@@ -34,9 +34,9 @@ class AtomicBoard(unittest.TestCase):
             EC.visibility_of_element_located(
                 (By.CSS_SELECTOR, ".js-panel-heading_text")))
         task.click()
-        input = driver.find_element_by_css_selector(".editable-input")
-        input.clear()
-        input.send_keys(text_for_editing)
+        title_input = driver.find_element_by_css_selector(".editable-input")
+        title_input.clear()
+        title_input.send_keys(text_for_editing)
         ok_button = driver.find_element_by_css_selector(
             ".editable-buttons .btn-primary")
         ok_button.click()
@@ -93,17 +93,18 @@ class AtomicBoard(unittest.TestCase):
 
     def test_5_add_new_task(self):
         new_task_title = 'Новое задание'
+        sleep_time = 1
         driver = self.driver
         WebDriverWait(driver, self.timeout).until(
             EC.visibility_of_element_located(
                 (By.CSS_SELECTOR, ".add-ticket-block_button"))).click()
-        input = driver.find_element_by_css_selector(".editable-input")
-        input.clear()
-        input.send_keys(new_task_title)
+        title_input = driver.find_element_by_css_selector(".editable-input")
+        title_input.clear()
+        title_input.send_keys(new_task_title)
         ok_button = driver.find_element_by_css_selector(
             ".editable-buttons .btn-primary")
         ok_button.click()
-        time.sleep(1)
+        time.sleep(sleep_time)
         task_titles = [task.text for task in driver.find_elements_by_css_selector(
             ".js-panel-heading_text")]
         self.assertTrue(new_task_title in task_titles)
