@@ -140,6 +140,6 @@ class AtomicBoard(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    AtomicBoard.driver = webdriver.Chrome()
+    AtomicBoard.driver = webdriver.PhantomJS()
     AtomicBoard.timeout = 10
     unittest.main()
